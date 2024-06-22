@@ -1,0 +1,31 @@
+관리자
+ : 과목별 학생 목록 출력 : 수강 과목 조인해서 학생 리스트
+
+select sub_name, std_name from lecture
+left join subject
+on subject.sub_id = lecture.sub_id
+left join student
+on student.std_id = lecture.std_id
+where sub_name like #{sub_name};
+
+
+: 출결 등록 수정 2개
+
+등록
+insert into attendance(att_date, att_status, std_id, sub_id)
+values(current_timestamp, '#{att_status}', '#{std_id}', '#{sub_id}');
+
+수정
+update attendance set att_status = #{att_status}
+where std_id=#{std_id};
+
+
+: 과목 평균 조회(avg 사용)
+
+
+ : 성적 기입 (insert)
+
+
+
+
+
