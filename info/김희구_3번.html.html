@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+	const button=document.querySelector('#submit')
+	const input=document.querySelector('#name')
+	const input2=document.querySelector('#kor')
+	const input3=document.querySelector('#eng')
+	const input4=document.querySelector('#math')
+	const input5=document.querySelector('#sci')	
+	const textarea=document.querySelector('#output')
+
+	
+	button.addEventListener('click',()=>{
+		class Student{
+			constructor(이름,국어,영어,수학,과학){
+				this.이름=이름
+				this.국어=국어
+				this.영어=영어
+				this.수학=수학
+				this.과학=과학
+			}
+			
+			getSum(){
+				return this.국어+this.영어+this.수학+this.과학
+				console.log(getSum())
+			}
+			
+			getAverage(){
+				return this.getSum()/4
+			}
+			toString(){
+				return `${this.이름}\t${this.getSum()}점\t${this.getAverage()}점\n`
+			}
+		}
+		
+		const students=[]
+		students.push(new Student(input.value,parseInt(input2.value),parseInt(input3.value),parseInt(input4.value),parseInt(input5.value)))
+
+		let output='이름\t총점\t평균\n'
+		for(const s of students){
+			output+=s.toString()
+		}
+		textarea.textContent=output
+	})
+})
+</script>
+</head>
+<body>
+<fieldset>
+<legend>성적 입력</legend>
+<label>이름 : <input type="text" size="10" id="name"></label>
+<hr>
+<label>국어 : <input type="number" size="3" id="kor"></label>
+<hr>
+<label>영어 : <input type="number" size="3" id="eng"></label>
+<hr>
+<label>수학 : <input type="number" size="3" id="math"></label>
+<hr>
+<label>과학 : <input type="number" size="3" id="sci"></label>
+<hr>
+<input type="submit" value="제출" id="submit">
+</fieldset>
+<fieldset>
+<legend>성적 출력</legend>
+<textarea id="output"></textarea>
+</fieldset>
+</body>
+</html>
